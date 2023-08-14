@@ -2,12 +2,13 @@ import express, { Application } from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
 import db from "../db/connection";
+import personRouter from "../routes/person.routes";
 
 class Server {
   private app: Application;
   private port: string;
   private apiPath = {
-    auth: "/api/v1.0",
+    person: "/api/person",
   };
 
   constructor() {
@@ -37,7 +38,7 @@ class Server {
   }
 
   routes() {
-    // this.app.use(this.apiPath.auth, authRouter);
+    this.app.use(this.apiPath.person, personRouter);
   }
 
   listen() {
